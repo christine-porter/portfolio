@@ -10,7 +10,9 @@ const pages = [about, projects, contact];
 const buttons = [aboutBtn, projectsBtn, contactBtn];
 
 //switches "page" upon button click, uses a fade in/out effect
-function switchPage(newPage, newPageBtn, urlUpdate) {
+function switchPage(newPage, newPageBtn, urlUpdate, firstLoad) {
+  let timeMod = firstLoad ? 0 : 1; //if this is the first load, cancel all fade effects
+
   //lower opacity for fade in/out
   for (let page of pages) {
     page.style.opacity = 0;
@@ -38,8 +40,8 @@ function switchPage(newPage, newPageBtn, urlUpdate) {
 
       //update url only if urlUpdate is true
       if (urlUpdate) {
-        //if new page is about, dont add to url because its the "home" page
-        history.pushState({}, "", `/${newPage.id == "about" ? "" : newPage.id}`);
+        //about is home and /about doesnt exist, dont add it to url
+        window.location.hash = newPage.id == "about" ? "" : newPage.id;
 
         //scroll to top - mostly for mobile
         document.querySelector("#content-area").scrollTo({
@@ -47,8 +49,8 @@ function switchPage(newPage, newPageBtn, urlUpdate) {
           behavior: "smooth",
         });
       }
-    }, 100);
-  }, 500);
+    }, 100 * timeMod);
+  }, 500 * timeMod);
 }
 
 aboutBtn.addEventListener("click", () => {
@@ -61,16 +63,22 @@ contactBtn.addEventListener("click", () => {
   switchPage(contact, contactBtn, true);
 });
 
-//https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
-function loadPage() {
-  const pageName = window.location.pathname.slice(1);
+//whenever url is loaded or back button is pressed, bring up page that corresponds to the current url
+function loadPage(firstLoad) {
+  const pageName = window.location.hash.slice(1);
   const pageNames = ["about", "projects", "contact"];
 
-  for (let i in pageNames) {
-    if (pageName == pageNames[i]) {
-      switchPage(pages[i], buttons[i], false);
+  if (pageName == "") {
+    switchPage(about, aboutBtn, false, firstLoad);
+    return;
+  } else {
+    for (let i in pageNames) {
+      if (pageName == pageNames[i]) {
+        switchPage(pages[i], buttons[i], false, firstLoad);
+      }
     }
   }
 }
-window.addEventListener("popstate", () => loadPage()); //make back/forward buttons work
-loadPage(); //call this on page load to display
+//https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
+window.addEventListener("hashchange", () => loadPage(false)); //make back/forward buttons work
+loadPage(true); //call this on page load to display page that corresponds to url
