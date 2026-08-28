@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+    <div id="content-area">
+      <div id="about">
+        <h1 id="name">Christine Porter</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl lorem, tempor nec diam et, luctus eleifend purus. Aenean fermentum mattis congue. Sed ut enim faucibus, pharetra enim id, pellentesque dui. Vestibulum porta, sem sit amet tincidunt suscipit, nisi justo pharetra nunc, quis maximus enim risus et mi. Phasellus sagittis vel sapien a cursus.</p>
+      </div>
+      <div id="projects">
+        <h1>Projects</h1>
+        <div class="project-card">
+          <h2>Project Name</h2>
+          <img src="https://placehold.co/150" />
+          <span class="date">Aug 2026</span>
+          <span class="skills">HTML, CSS, JavaScript, React.js</span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl lorem, tempor nec diam et, luctus eleifend purus. Aenean fermentum mattis congue. Sed ut enim faucibus, pharetra enim id, pellentesque dui. Vestibulum porta, sem sit amet tincidunt suscipit, nisi justo pharetra nunc, quis maximus enim risus et mi.</p>
+          <a class="project-link" href="#">View</a>
+        </div>
+      </div>
+      <div id="contact">
+        <h1>Contact</h1>
+        <div id="contact-contents">
+          <img src="./img/image.png" width="816" height="1056" />
+          <div id="contact-text">
+            <p>
+              Located in <strong>Gainesville, Florida</strong><br />
+              <strong><a href="mailto:christineporter517@gmail.com">christineporter517@gmail.com</a></strong>
+            </p>
+            <a class="contact-link" href="ChristinePorter_Resume_08_26.pdf" target="_blank">Resume</a>
+            <a class="contact-link" href="https://www.linkedin.com/in/christine-porter-97472a311/" target="_blank">LinkedIn</a>
+            <a class="contact-link" href="https://github.com/christine-porter" target="_blank">Github</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav id="navigation">
+      <ul>
+        <li><button id="about-btn" class="current" disabled>About</button></li>
+        <li><button id="projects-btn">Projects</button></li>
+        <li><button id="contact-btn">Contact</button></li>
+      </ul>
+    </nav>
+    <script src="js/script.js"></script>
+  </body>
+</html>

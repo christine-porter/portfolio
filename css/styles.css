@@ -1,0 +1,370 @@
+/* global variables */
+:root {
+  --bg-color: #2a5c39;
+  --text-color: #edf9d7;
+  --text-hover-color: #fffff7;
+  --font: "Crimson Text", serif;
+  --link-color: #c6e58a;
+  --link-hover-color: #def5b4;
+  --link-visited-color: #6ad26f;
+}
+
+/* scroll bar - https://stackoverflow.com/a/38994837 */
+#content-area {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
+  /* gradient/fade-out at bottom when you can scroll */
+  -webkit-mask-image: linear-gradient(to bottom, var(--bg-color) 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, var(--bg-color) 80%, transparent 100%);
+}
+#content-area::-webkit-scrollbar {
+  display: none; /* Older Safari and Chromium */
+}
+
+/* layout */
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 22px;
+  height: 100%;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-size: 80px;
+  line-height: 84px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  margin-top: 20%;
+  text-align: center;
+}
+#projects,
+#contact {
+  display: none;
+  opacity: 0;
+  transition: 0.7s ease;
+}
+#about {
+  transition: 0.7s ease;
+}
+
+#content-area {
+  width: 60%;
+  margin: 1em auto;
+  flex-grow: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  max-height: 80%;
+  overflow-y: scroll;
+}
+
+#about h1 {
+  margin-top: 25%;
+}
+
+/* layout of contact page */
+#contact-contents {
+  display: flex;
+  flex-direction: row;
+}
+#contact img {
+  max-width: 300px;
+  height: 100%;
+  margin-right: 2em;
+  margin-top: 1em;
+}
+#contact-text {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contact-link {
+  text-transform: uppercase;
+  display: block;
+  color: var(--text-color);
+  border: 2px var(--text-color) solid;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 10px auto;
+  padding: 5px;
+  width: 250px;
+}
+.contact-link:hover,
+.project-link:hover {
+  color: var(--text-hover-color);
+  border: 2px var(--text-hover-color) solid;
+}
+.contact-link:visited,
+.project-link:visited {
+  color: var(--text-color);
+}
+.contact-link:visited:hover,
+.project-link:visited:hover {
+  color: var(--text-hover-color);
+  border: 2px var(--text-hover-color) solid;
+}
+
+/* project cards */
+.project-card {
+  display: grid;
+  grid-template-areas:
+    "title title title"
+    "image date skills"
+    "image desc desc"
+    "image btn btn";
+  text-align: left;
+  grid-template-columns: auto 80px auto;
+}
+.project-card img {
+  grid-area: image;
+  max-width: 150px;
+  height: auto;
+  margin-right: 15px;
+}
+.project-card h2 {
+  grid-area: title;
+  border-bottom: var(--text-color) 1px solid;
+}
+.project-card .date {
+  grid-area: date;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.project-card .date::after {
+  content: " - ";
+  margin-left: 3px;
+  font-style: italic;
+}
+.project-card .skills {
+  grid-area: skills;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.project-card p {
+  grid-area: desc;
+  margin-top: 0.5em;
+  margin-bottom: 8px;
+}
+.project-card .project-link {
+  grid-area: btn;
+}
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-color);
+  border: 2px var(--text-color) solid;
+  border-radius: 5px;
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+}
+
+/* row of nav buttons */
+nav {
+  margin: 30px auto;
+  width: 100%;
+}
+nav button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 0;
+  border-radius: 5px;
+
+  font-family: var(--font);
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  width: 150px;
+  height: 30px;
+  transition: 0.7s ease;
+}
+nav ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav button:hover {
+  color: var(--text-hover-color);
+  font-size: 24px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+nav button:focus-visible {
+  outline: invert;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-weight: 800;
+}
+
+/* style the current page's button differently */
+.current {
+  font-weight: 800;
+  font-size: 22px;
+}
+.current:hover {
+  color: var(--text-color);
+  font-size: 22px;
+  cursor: default;
+}
+
+/* image, link, & list styles */
+img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 5%;
+}
+a {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--link-hover-color);
+}
+a:visited {
+  color: var(--link-visited-color);
+}
+a:visited:hover {
+  color: var(--link-hover-color);
+}
+ul {
+  list-style-position: inside;
+  text-align: left;
+}
+
+/* skip to nav link */
+.skip-link {
+  position: absolute;
+  left: -200px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  z-index: 1000;
+  width: 175px;
+  height: auto;
+  padding: 10px;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-weight: 800;
+}
+.skip-link:focus-visible {
+  outline: invert;
+}
+
+/* RWD - small screens, changes button layout to a 2x2 grid */
+@media (max-width: 600px) {
+  body {
+    flex-wrap: nowrap;
+  }
+  #content-area {
+    width: 90%;
+    margin-top: 3em;
+    display: block;
+    padding-bottom: 2em; /*prevent buttons on bottom from being covered by gradient*/
+  }
+  h1 {
+    font-size: 50px;
+    line-height: 54px;
+    max-width: 100%;
+  }
+  nav li {
+    text-align: center;
+    width: 45%;
+    line-height: 24px;
+    margin: 5px;
+  }
+  img {
+    max-width: 100%;
+  }
+  /* contact page layout - moves image from the left to the top of the page */
+  #contact-contents {
+    display: block;
+    padding-top: 1em;
+  }
+  #contact-text {
+    padding: 0 0.5em;
+    display: block;
+  }
+  #contact img {
+    max-width: 75%;
+    height: auto;
+    margin: auto;
+  }
+  /* project cards */
+  .project-card {
+    grid-template-areas:
+      "title"
+      "image"
+      "date"
+      "skills"
+      "desc"
+      "btn";
+    text-align: center;
+    grid-template-columns: auto;
+  }
+  .project-card img {
+    margin: auto;
+    margin-bottom: 5px;
+  }
+  .project-card .skills,
+  .project-card .date {
+    line-height: 26px;
+  }
+  .project-card .date::after {
+    display: none;
+  }
+  .project-card .project-link {
+    margin: auto;
+  }
+}
+
+/* RWD - mid/small screens, adjusting padding so text fits better */
+@media (min-width: 601px) and (max-width: 800px) {
+}
+
+/* RWD - large screens, just increases font size */
+@media (min-width: 2000px) {
+  body {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  nav button {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  nav button:hover {
+    font-size: 30px;
+  }
+  .current {
+    font-size: 28px;
+  }
+  .current:hover {
+    font-size: 28px;
+  }
+}
